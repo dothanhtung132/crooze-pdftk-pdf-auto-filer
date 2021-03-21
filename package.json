@@ -1,0 +1,25 @@
+{
+  "name": "crooze-pdktk",
+  "version": "1.0.0",
+  "description": "PDFtk is a simple tool for doing everyday things with PDF documents",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Crooze",
+  "license": "ISC",
+  "dependencies": {
+    "box-node-sdk": "^1.29.0",
+    "jquery-csv": "^0.8.12",
+    "lodash": "^4.17.11",
+    "pdf2json": "^1.1.8",
+    "pdffiller-aws-lambda": "0.0.12",
+    "pdfkit": "^0.9.1",
+    "string_decoder": "^1.2.0",
+    "xml2json-light": "^1.0.6"
+  },
+  "devDependencies": {
+    "serverless": "^1.45.1",
+    "serverless-offline": "^3.33.0"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "version": "2019-05-26 / PS-UAT /  Texas Form 01-919",
+  "certificateFileId": "460564540906",
+  "validation": {
+    "__comment": "Validation Files (used on form Submission)",
+    "data": [{
+      "id": 462631259446,
+      "name": "BU_State_Validation2.csv",
+      "lookup": ["STATE", "BU", "Certificate_Type"],
+      "errMessage": "{0} combination is not valid"
+    }, {
+        "id": 444140255078,
+        "name": "ReasonForExemption_Validation.csv",
+        "lookup": ["Certificate Type"],
+        "errMessage": "The Reason for Exemption not valid for the {0} chosen"
+    }, {
+      "id": 444142068698,
+      "name": "Vendor_Validation.csv",
+      "lookup": ["BF_NBR"],
+      "errMessage": "The selected {0} does not exist"
+    }]
+  },
+  "formDataFormat": {
+    "__comment": "extract value from form data",
+    "businessUnit": {
+      "regex": "^[a-zA-Z0-9]+"
+    },
+    "state": {
+      "regex": "[\\w]+(?=\\))"
+    },
+    "certificateType": {
+      "regex": "[\\w]+(?=\\))"
+    },
+    "vendorName": {
+        "regex": "^[a-zA-Z0-9]+"
+    }
+  },
+  "formMapping": {
+      "BF_NBR": "vendorName",
+      "STATE": "state",
+      "BU": "businessUnit",
+      "Certificate Type": "certificateType",
+      "Certificate_Type": "certificateType"
+  },
+  "pdfMapping": {
+      "__comment": "mapping form values to pdf",
+      "signersName": "boxUserName",
+      "PURCHASER": "Signer_Title",
+      "LE_STATE": "STATE",
+      "PO_NUM": "poNumber",
+      "PO_LINE": "poLineNumber1",
+      "HOST_SYSTEM": "systemOfOrigin",
+      "PONUM_LN": "{poNumber}-{poLineNumber1}",
+      "SIGNATURE_DATE": "dateOfIssue1",
+      "Phone": "{poNumber}-{poLineNumber1}",
+      "Taxpayer number": "poLineNumber1",
+
+      "__comment": "BU_State_Validation",
+      "LE_BU": "BU",
+      "LE_NAME": "Buyer Name",
+      "HQ_ADDRESS": "Buyer Address",
+      "HQ_STREET": "Address Street",
+      "HQ_STATE": "Address State",
+      "HQ_CITY": "Address City",
+      "HQ_ZIP": "Address ZIP",
+      "LE_EIN": "EIN",
+      "PERMITNUM": "STPN",
+      "PERMITNUM_STATE": "STPN State",
+      "LE_REGNUM": "REGISTRATION_NUM",
+      "LE_REGTYPE": "REGISTRATION_TYPE",
+      "DESC_BIZ": "Description of Business",
+      "LE_NAME": "REGISTERED_NAME",
+      "CERT_TYPE": "Certificate_Type",
+      "HQ_STREET_ADDR": "Address Street",
+      "HQ_ADDR_CSZ": "{Address City}, {Address State}, {Address ZIP}",
+
+      "__comment": "Vendor_Validation",
+      "VENDOR_NAME": "BF_NAME",
+      "BF_ADDRESS1": "BF_ADDRESS1",
+      "BF_ADDRESS2": "BF_ADDRESS2",
+      "BF_ADDRESS3": "BF_ADDRESS3",
+      "BF_CITY_ADDR": "BF_CITY",
+      "BF_STATE_ADDR": "BF_STATE",
+      "BF_ZIPCODE_ADDR": "BF_POSTAL",
+      "VENDOR_ADDRESS": "{BF_ADDRESS1}, {BF_CITY}, {BF_STATE}, {BF_POSTAL}",
+      "VENDOR_STREET_ADDR": "BF_ADDRESS1",
+      "VENDOR_ADDR_CSZ": "{BF_CITY}, {BF_STATE}, {BF_POSTAL}",
+
+      "__comment": "Form Specific Values",
+      "State Registration Sellers Permit or ID Number of Purchaser{STATE}": "STPN"
+  },
+  "pdfDefaultValue": {
+    "PURCHASER": "Buyer",
+    "SIGNATURE_DATE": "{currentDate}"
+  },
+  "fieldTypes": {
+      "__comment": "pdf form field type",
+      "LE_REGTYPE": "Checkbox"
+  },
+  "folderStructure": ["Certificate Library", "{Segment}", "{STATE}", "{BU}"],
+  "fileName": ["STATE", "BU", "Certificate_Type"],
+  "metadataMapping": {
+      "businessUnit": "Buyer Name",
+      "businessUnitAbbr": "BU",
+      "einNumber": "EIN",
+      "registrationNumber": "REGISTRATION_NUM",
+      "segment": "Segment",
+      "vendorAddress": "BF_ADDRESS1",
+      "vendorId": "BF_NBR",
+      "vendorName": "BF_NAME",
+      "dateOfIssue": "SIGNATURE_DATE"
+  },
+  "successDialog": {
+      "title": "Success",
+      "message": "The form has been successfully submitted.",
+      "BUTTONS": {"OK": "View Certificate link", "CANCEL": "Cancel"}
+  },
+  "pdfSignatureField": "Signers_Signature",
+  "templateKey": "taxCertificateMetadataVistra"
+}
